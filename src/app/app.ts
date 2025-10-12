@@ -10,6 +10,7 @@ import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
+  standalone: true, 
   imports: [RouterOutlet, Header, Hero, About, Projects, Contact, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
