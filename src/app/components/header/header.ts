@@ -9,12 +9,19 @@ import { CommonModule } from '@angular/common';
 })
 export class Header {
   isMenuOpen = false;
-
+  
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
   closeMenu(): void {
     this.isMenuOpen = false;
+  }
+
+   downloadCV(): void {
+    const link = document.createElement('a');
+    link.href = 'public/CV/JhonnyDiazCenteno_CV_DesarolladorWeb.pdf';
+    link.download = 'JhonnyDiazCenteno_CV_DesarolladorWeb.pdf'; 
+    link.click();
   }
 }

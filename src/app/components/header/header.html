@@ -20,10 +20,11 @@
 
     <!-- Desktop Navigation -->
     <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
-      <!---menu si es necesario--->
+      
       
       <!-- Desktop Download Button -->
       <button 
+        (click)="downloadCV()"
         class="group relative flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-white dark:bg-transparent text-gray-900 dark:text-white border-2 border-gray-900 dark:border-primary text-sm font-semibold tracking-wide shadow-md hover:shadow-lg hover:bg-gray-900 dark:hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 ease-out dark:hover:border-primary"
         aria-label="Descargar currículum vitae en formato PDF"
       >
@@ -75,6 +76,7 @@
       
       <!-- Mobile Download Button -->
       <button 
+      (click)="downloadCV()"
         class="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-lg h-11 px-5 bg-white dark:bg-transparent text-gray-900 dark:text-white border-2 border-gray-900 dark:border-primary text-sm font-semibold tracking-wide shadow-md hover:shadow-lg hover:bg-gray-900 dark:hover:bg-primary hover:text-white active:scale-[0.98] transition-all duration-300 ease-out mt-4"
         aria-label="Descargar currículum vitae en formato PDF"
       >
