@@ -20,8 +20,8 @@ export class Header {
 
    downloadCV(): void {
     const link = document.createElement('a');
-    link.href = 'CV/JhonnyDiazCenteno_CV_DesarolladorWeb.pdf';
-    link.download = 'JhonnyDiazCenteno_CV_DesarolladorWeb.pdf'; 
+    link.href = 'CV/JhonnyDiazCenteno_CV_Desarollo.pdf';
+    link.download = 'JhonnyDiazCenteno_CV_Desarollo.pdf'; 
     link.click();
   }
 }
