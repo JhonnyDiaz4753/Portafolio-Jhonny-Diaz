@@ -1,59 +1,71 @@
-# Portafolio
+# Portafolio — Jhonny Diaz Centeno
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.4.
+Portafolio personal donde muestro mis proyectos como desarrollador full stack. Construido con Angular 20 (standalone components + SSR) y Tailwind CSS.
 
-## Development server
+🔗 **Demo en vivo:** [portafolio-jhonny-diaz.vercel.app](https://portafolio-jhonny-diaz.vercel.app/)
 
-To start a local development server, run:
+## Sobre mí
+
+Desarrollador web full stack con experiencia práctica en el ciclo completo de desarrollo: diseño de APIs REST con Spring Boot, integración frontend con Angular y React, gestión de bases de datos relacionales con PostgreSQL y despliegue en plataformas como Render y Railway.
+
+## Stack técnico de este portafolio
+
+- **Framework:** Angular 20 (standalone components, signals, control flow `@for`)
+- **Renderizado:** Server-Side Rendering (SSR) con Express
+- **Estilos:** Tailwind CSS 4
+- **Deploy:** Vercel
+
+## Características
+
+- 🌗 Modo claro/oscuro persistente, con detección automática de la preferencia del sistema
+- 📱 Totalmente responsive, con menú lateral (drawer) en móvil
+- ⚡ Imágenes optimizadas en WebP con `NgOptimizedImage` (lazy-loading + prevención de layout shift)
+- 🧩 Contenido de proyectos y habilidades data-driven (arrays tipados en TypeScript), no hardcodeado en el HTML
+
+## Proyectos destacados
+
+| Proyecto | Descripción | Demo | Repo |
+|---|---|---|---|
+| **Admin Q-sopa** | Panel de administración full-stack para restaurante: CRUD, POS, historial de ventas y dashboard de estadísticas | [Ver demo](https://admin-q-sopa.vercel.app/) | [GitHub](https://github.com/JhonnyDiaz4753/Admin_Q_sopa) |
+| **Q-Sopa** | Menú digital para restaurante con navegación por categorías en tiempo real vía API REST propia | [Ver demo](https://qsopav01.vercel.app/) | [GitHub](https://github.com/JhonnyDiaz4753/Q_sopa) |
+
+## Correr el proyecto localmente
+
+Clona el repositorio e instala las dependencias:
+
+```bash
+git clone https://github.com/JhonnyDiaz4753/Portafolio-Jhonny-Diaz.git
+cd Portafolio-Jhonny-Diaz
+npm install
+```
+
+Levanta el servidor de desarrollo:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abre `http://localhost:4200/` en el navegador. La app se recarga automáticamente al modificar los archivos fuente.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Build de producción
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Los artefactos de build quedan en `dist/portafolio`.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Tests unitarios
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Contacto
 
-For end-to-end (e2e) testing, run:
+- LinkedIn: [Jhonny Diaz Centeno](http://www.linkedin.com/in/jhonny-diaz-centeno-567225378)
+- GitHub: [@JhonnyDiaz4753](https://github.com/JhonnyDiaz4753)
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Generado originalmente con [Angular CLI](https://github.com/angular/angular-cli) v20.3.4.
