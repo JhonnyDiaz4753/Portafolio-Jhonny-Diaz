@@ -6,19 +6,17 @@ import { About } from './components/about/about';
 import { Projects } from './components/projects/projects';
 import { Contact } from './components/contact/contact';
 import { Footer } from './components/footer/footer';
+import {Skills} from './components/skills/skills';
 
 
 @Component({
   selector: 'app-root',
   standalone: true, 
-  imports: [RouterOutlet, Header, Hero, About, Projects, Contact, Footer],
+  imports: [RouterOutlet, Skills, Header, Hero, About, Projects, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('portafolio');
- toggleDarkMode() {
-  document.documentElement.classList.toggle('dark');
-}
 
 }

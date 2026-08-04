@@ -1,0 +1,17 @@
+<section class="py-10">
+  <h2
+    class="text-2xl font-bold leading-tight tracking-tight px-4 pb-6 text-gray-900 dark:text-white"
+  >
+    Habilidades
+  </h2>
+  <div class="flex flex-wrap gap-4 px-4">
+    @for (skill of skills; track skill.name) {
+      <div
+        class="flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary dark:text-primary-200"
+      >
+        <img class="h-6 w-6" [src]="skill.iconUrl" [alt]="skill.name" />
+        <span>{{ skill.name }}</span>
+      </div>
+    }
+  </div>
+</section>
