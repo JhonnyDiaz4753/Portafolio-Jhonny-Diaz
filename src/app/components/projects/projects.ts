@@ -14,7 +14,7 @@ export class Projects {
       id: 'admin-q-sopa',
       title: 'Admin Q-sopa',
       description:
-        'Panel de administración full-stack para la gestión completa del restaurante. Incluye CRUD de productos, categorías e ingredientes, un POS para registrar ventas con soporte para efectivo, tarjeta y transferencia, historial de ventas con detalle por orden, y un dashboard con estadísticas de ingresos y productos más vendidos.',
+        'Panel de administración full-stack para la gestión completa del restaurante. Incluye CRUD de productos, categorías e ingredientes, un POS para registrar ventas con soporte para efectivo, tarjeta y transferencia, historial de ventas con detalle por orden, y un dashboard con estadísticas de ingresos y productos más vendidos. Credenciales de acceso a la demo: Usuario:Q-sp-admin | Contraseña: Q-sp-admin741',
       imageUrl: '/images/Admin_Q.webp',
       imageAlt: 'Panel de administración Admin Q-sopa',
       technologies: ['React', 'Vite', 'Spring Boot', 'PostgreSQL', 'Supabase', 'Railway', 'REST API', 'CSS responsivo'],
