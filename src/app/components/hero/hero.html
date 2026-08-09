@@ -1,4 +1,4 @@
-<section class="w-full">
+<section class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
   <div class="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12 py-10 items-center">
     <div class="flex flex-col gap-6 text-center lg:text-left flex-1">
       <div class="flex flex-col gap-3">
@@ -15,17 +15,39 @@
       </div>
     </div>
 
-    <!-- Imagen mejorada -->
-    <div class="w-full max-w-md lg:max-w-none lg:w-1/2">
-      <div class="relative aspect-square rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
-        <img
-          ngSrc="/images/grados_cara.webp"
-          alt="Jhonny Diaz Centeno - Desarrollador Web Full Stack"
-          class="w-full h-full object-contain"
-          loading="eager"
-          width="734"
-          height="800"
-        />
+    <!-- Imagen con efecto 3D -->
+    <div class="w-full max-w-md lg:max-w-none lg:w-1/2 perspective-wrap">
+      <div
+        class="photo-stack"
+        [style.transform]="'rotateX(' + rotateX() + 'deg) rotateY(' + rotateY() + 'deg)'"
+      >
+        <div
+          class="photo-window depth-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-primary/20"
+        ></div>
+        <div
+          class="photo-window depth-1 bg-white dark:bg-background-dark border border-gray-200 dark:border-primary/20"
+        ></div>
+ 
+        <div
+          class="photo-window depth-0 bg-white dark:bg-background-dark border border-gray-200 dark:border-primary/20 shadow-xl"
+        >
+          <div class="window-bar border-b border-gray-200 dark:border-primary/20">
+            <span class="dot bg-gray-300 dark:bg-gray-600"></span>
+            <span class="dot bg-gray-300 dark:bg-gray-600"></span>
+            <span class="dot bg-gray-300 dark:bg-gray-600"></span>
+            <span class="filename text-gray-500 dark:text-gray-400">Jhonny Diaz Centeno</span>
+          </div>
+          <div class="photo-frame">
+            <img
+              ngSrc="/images/grados_cara.webp"
+              alt="Jhonny Diaz Centeno - Desarrollador Web Full Stack"
+              class="w-full h-full object-cover"
+              width="734"
+              height="800"
+              priority
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>

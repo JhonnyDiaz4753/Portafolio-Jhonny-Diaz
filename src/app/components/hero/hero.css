@@ -1,0 +1,64 @@
+.perspective-wrap {
+  perspective: 1400px;
+}
+
+.photo-stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+}
+
+.photo-window {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* decorative layers behind the photo, giving it depth */
+.depth-2 {
+  transform: translateZ(-70px) translate(-14px, -18px);
+}
+
+.depth-1 {
+  transform: translateZ(-35px) translate(-7px, -9px);
+}
+
+.depth-0 {
+  transform: translateZ(0);
+  display: flex;
+  flex-direction: column;
+}
+
+.window-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  flex-shrink: 0;
+}
+
+.window-bar .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.window-bar .filename {
+  margin-left: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+}
+
+.photo-frame {
+  flex: 1;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-stack {
+    transition: none;
+  }
+}

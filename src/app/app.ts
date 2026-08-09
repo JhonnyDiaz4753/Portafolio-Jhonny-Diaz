@@ -7,12 +7,12 @@ import { Projects } from './components/projects/projects';
 import { Contact } from './components/contact/contact';
 import { Footer } from './components/footer/footer';
 import {Skills} from './components/skills/skills';
-
+import { ParticleBackground } from './components/particle-background/particle-background';
 
 @Component({
   selector: 'app-root',
   standalone: true, 
-  imports: [RouterOutlet, Skills, Header, Hero, About, Projects, Footer],
+  imports: [RouterOutlet, Skills,ParticleBackground , Header, Hero, About, Projects, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

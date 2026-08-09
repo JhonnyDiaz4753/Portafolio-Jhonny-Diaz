@@ -8,8 +8,26 @@
   --color-background-dark: #101922;
   --font-display: Inter, sans-serif;
 }
-
+/* Scroll-reveal animation, applied via the [appReveal] directive */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+ .reveal { opacity: 0; transform: translateY(28px); transition: ...; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 @tailwind utilities;

@@ -1,4 +1,4 @@
-<section class="py-10">
+<section class="py-10" appReveal>
   <h2
     class="text-2xl font-bold leading-tight tracking-tight px-4 pb-6 text-gray-900 dark:text-white"
   >
@@ -7,10 +7,11 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     @for (project of projects; track project.id) {
       <div
-        class="flex flex-col rounded-xl overflow-hidden bg-white dark:bg-background-dark shadow-md border border-gray-200 dark:border-primary/20 hover:shadow-lg transition-shadow"
+        appTilt
+        class="tilt-card relative flex flex-col rounded-xl overflow-hidden bg-white dark:bg-background-dark shadow-md border border-gray-200 dark:border-primary/20 hover:shadow-xl transition-shadow"
       >
         <div class="w-full bg-center bg-no-repeat aspect-video bg-cover">
-          <img
+         <img
             [ngSrc]="project.imageUrl"
             [alt]="project.imageAlt"
             class="w-full h-full object-cover object-center"
@@ -18,6 +19,7 @@
             width="734"
             height="400"
           />
+
         </div>
         <div class="flex flex-col gap-4 p-6 flex-grow">
           <h3
@@ -31,7 +33,7 @@
           <p class="text-gray-500 dark:text-gray-400 text-xs font-medium leading-normal">
             Tecnologías: {{ project.technologies.join(' · ') }}
           </p>
-
+ 
           <!-- Botones de acción -->
           <div class="flex gap-3 mt-auto">
             <a
@@ -50,7 +52,7 @@
               </svg>
               <span>Ver Proyecto</span>
             </a>
-
+ 
             <a
               [href]="project.repoUrl"
               target="_blank"

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Skill } from '../../models/Skills';
+import { RevealDirective } from '../../directives/Reveal_directive';
 
 @Component({
   selector: 'app-skills',
-  imports: [],
+  imports: [RevealDirective],
   templateUrl: './skills.html',
   styleUrl: './skills.css'
 })
