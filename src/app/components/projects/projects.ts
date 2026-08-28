@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Project } from '../../models/Proyect';
 import { NgOptimizedImage } from '@angular/common';
-import { TiltDirective } from '../../directives/Tilt_directive';
 import { RevealDirective } from '../../directives/Reveal_directive';
 @Component({
   selector: 'app-projects',
-  imports: [NgOptimizedImage, TiltDirective, RevealDirective],
+  imports: [NgOptimizedImage, RevealDirective],
   templateUrl: './projects.html',
   styleUrl: './projects.css'
 })
