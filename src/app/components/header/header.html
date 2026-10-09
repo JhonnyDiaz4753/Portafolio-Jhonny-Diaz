@@ -1,114 +1,76 @@
-<!-- header.component.html -->
-<header class="sticky top-0 z-50 bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-gray-200 dark:border-primary/30 shadow-sm">
-  <div class="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4">
-    <!-- Logo y nombre -->
-    <div class="flex items-center gap-2 sm:gap-3">
-      <div class="size-6 sm:size-7 text-primary flex-shrink-0">
-       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2.5"/>
-  <text x="24" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="currentColor" text-anchor="middle">JDC</text>
-</svg>
-      </div>
-      <h2 class="text-base sm:text-lg font-bold leading-tight tracking-tight text-gray-900 dark:text-white truncate">
-        Jhonny Diaz Centeno
-      </h2>
-            <!-- Theme Toggle -->
-      <button
-        (click)="toggleTheme()"
-        class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark"
-        [attr.aria-label]="isDarkMode() ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
-      >
-        <!-- Sun icon (shown in dark mode, click to go light) -->
-        <svg *ngIf="isDarkMode()" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-        <!-- Moon icon (shown in light mode, click to go dark) -->
-        <svg *ngIf="!isDarkMode()" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-        </svg>
-      </button>
-    </div>
+<header class="site-header">
+  <div class="header-shell">
+    <a class="brand" href="#inicio" aria-label="Jhonny Diaz Centeno, inicio" (click)="closeMenu()">
+      <span class="brand-mark" aria-hidden="true">JD</span>
+      <span class="brand-copy">
+        <span class="brand-name">Jhonny Diaz</span>
+        <span class="brand-role">DESARROLLADOR FULL STACK</span>
+      </span>
+    </a>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
-      
-
-
-      <!-- Desktop Download Button -->
-      <button 
-        (click)="downloadCV()"
-        class="group relative flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-white dark:bg-transparent text-gray-900 dark:text-white border-2 border-gray-900 dark:border-primary text-sm font-semibold tracking-wide shadow-md hover:shadow-lg hover:bg-gray-900 dark:hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 ease-out dark:hover:border-primary"
-        aria-label="Descargar currículum vitae en formato PDF"
-      >
-        <svg 
-          class="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            stroke-width="2" 
-            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-          />
-        </svg>
-        <span class="hidden xl:inline">Descargar CV</span>
-        <span class="xl:hidden">CV</span>
-      </button>
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#contacto">Contacto</a>
     </nav>
 
-    <!-- Mobile Menu Button -->
-    <button
-      (click)="toggleMenu()"
-      class="lg:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark"
-      [attr.aria-label]="isMenuOpen ? 'Cerrar menú' : 'Abrir menú'"
-      [attr.aria-expanded]="isMenuOpen"
-    >
-      <!-- Hamburger Icon -->
-      <svg *ngIf="!isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-      <!-- Close Icon -->
-      <svg *ngIf="isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div
-    class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out"
-    [class.max-h-96]="isMenuOpen"
-    [class.opacity-100]="isMenuOpen"
-    [class.max-h-0]="!isMenuOpen"
-    [class.opacity-0]="!isMenuOpen"
-  >
-    <nav class="px-4 py-4 space-y-3 bg-gray-50 dark:bg-background-dark/50 border-t border-gray-200 dark:border-primary/20">
-      
-
-
-      <!-- Mobile Download Button -->
-      <button 
-      (click)="downloadCV()"
-        class="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-lg h-11 px-5 bg-white dark:bg-transparent text-gray-900 dark:text-white border-2 border-gray-900 dark:border-primary text-sm font-semibold tracking-wide shadow-md hover:shadow-lg hover:bg-gray-900 dark:hover:bg-primary hover:text-white active:scale-[0.98] transition-all duration-300 ease-out mt-4"
-        aria-label="Descargar currículum vitae en formato PDF"
+    <div class="header-actions">
+      <button
+        type="button"
+        class="icon-button theme-button"
+        (click)="toggleTheme()"
+        [attr.aria-label]="isDarkMode() ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
       >
-        <svg 
-          class="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            stroke-width="2" 
-            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-          />
+        <svg *ngIf="isDarkMode()" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+        </svg>
+        <svg *ngIf="!isDarkMode()" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+        </svg>
+      </button>
+
+      <button type="button" class="button-primary cv-button" (click)="downloadCV()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"></path>
         </svg>
         <span>Descargar CV</span>
       </button>
-    </nav>
+
+      <button
+        type="button"
+        class="icon-button menu-button"
+        (click)="toggleMenu()"
+        [attr.aria-label]="isMenuOpen ? 'Cerrar menú' : 'Abrir menú'"
+        [attr.aria-expanded]="isMenuOpen"
+        aria-controls="mobile-navigation"
+      >
+        <svg *ngIf="!isMenuOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+        <svg *ngIf="isMenuOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+    </div>
   </div>
+
+  <nav
+    id="mobile-navigation"
+    class="mobile-nav"
+    [class.is-open]="isMenuOpen"
+    [attr.aria-hidden]="!isMenuOpen"
+    aria-label="Navegación móvil"
+  >
+    <a href="#inicio" (click)="closeMenu()">Inicio</a>
+    <a href="#sobre-mi" (click)="closeMenu()">Sobre mí</a>
+    <a href="#proyectos" (click)="closeMenu()">Proyectos</a>
+    <a href="#habilidades" (click)="closeMenu()">Habilidades</a>
+    <a href="#contacto" (click)="closeMenu()">Contacto</a>
+    <button type="button" class="button-primary mobile-cv-button" (click)="downloadCV(); closeMenu()">
+      Descargar CV
+    </button>
+  </nav>
 </header>

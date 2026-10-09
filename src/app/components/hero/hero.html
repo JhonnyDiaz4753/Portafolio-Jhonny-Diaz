@@ -1,54 +1,59 @@
-<section class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
-  <div class="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12 py-10 items-center">
-    <div class="flex flex-col gap-6 text-center lg:text-left flex-1">
-      <div class="flex flex-col gap-3">
-        <h1
-          class="text-4xl md:text-5xl font-black leading-tight tracking-tighter text-gray-900 dark:text-white"
-        >
-         Ingeniero de Sistemas / Desarrollador Web Full Stack
-        </h1>
-        <p class="text-base md:text-lg font-normal leading-normal text-gray-600 dark:text-gray-300">
-          Desarrollo aplicaciones Web Full Stack completas, del diseño de la API a la interfaz de usuario. Con
-          experiencia real en Angular, Spring Boot y PostgreSQL, construyo productos funcionales,
-          bien estructurados y listos para producción.
-        </p>
-      </div>
+<section id="inicio" class="portfolio-section hero-section">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> Ingeniería y desarrollo web</div>
+    <h1 class="hero-title">
+      Hola, soy Jhonny.<br />
+      Creo experiencias <span class="gradient-text">web completas.</span>
+    </h1>
+    <p class="hero-description">
+      Ingeniero de Sistemas y desarrollador web Full Stack. Construyo aplicaciones de principio a
+      fin, desde APIs con Spring Boot hasta interfaces modernas con React y Angular.
+    </p>
+    <div class="hero-actions">
+      <a class="button-primary" href="#proyectos">
+        Explorar proyectos
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M5 12h14m-6-6 6 6-6 6"></path>
+        </svg>
+      </a>
+      <a class="button-secondary" href="#contacto">Conectemos</a>
     </div>
+    <div class="hero-technologies" aria-label="Tecnologías principales">
+      <span>React</span>
+      <span>Spring Boot</span>
+      <span>PostgreSQL</span>
+    </div>
+  </div>
 
-    <!-- Imagen con efecto 3D -->
-    <div class="w-full max-w-md lg:max-w-none lg:w-1/2 perspective-wrap">
-      <div
-        class="photo-stack"
-        [style.transform]="'rotateX(' + rotateX() + 'deg) rotateY(' + rotateY() + 'deg)'"
-      >
-        <div
-          class="photo-window depth-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-primary/20"
-        ></div>
-        <div
-          class="photo-window depth-1 bg-white dark:bg-background-dark border border-gray-200 dark:border-primary/20"
-        ></div>
- 
-        <div
-          class="photo-window depth-0 bg-white dark:bg-background-dark border border-gray-200 dark:border-primary/20 shadow-xl"
-        >
-          <div class="window-bar border-b border-gray-200 dark:border-primary/20">
-            <span class="dot bg-gray-300 dark:bg-gray-600"></span>
-            <span class="dot bg-gray-300 dark:bg-gray-600"></span>
-            <span class="dot bg-gray-300 dark:bg-gray-600"></span>
-            <span class="filename text-gray-500 dark:text-gray-400">Jhonny Diaz Centeno</span>
-          </div>
-          <div class="photo-frame">
-            <img
-              ngSrc="/images/grados_cara.webp"
-              alt="Jhonny Diaz Centeno - Desarrollador Web Full Stack"
-              class="w-full h-full object-cover"
-              width="734"
-              height="800"
-              priority
-            />
-          </div>
+  <div class="hero-visual">
+    <div
+      class="photo-stack"
+      [style.transform]="'rotateX(' + rotateX() + 'deg) rotateY(' + rotateY() + 'deg)'"
+    >
+      <div class="photo-window depth-2"></div>
+      <div class="photo-window depth-1"></div>
+      <div class="photo-window depth-0">
+        <div class="window-bar">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="filename">jhonny-diaz.dev / perfil</span>
+        </div>
+        <div class="photo-frame">
+          <img
+            ngSrc="/images/grados_cara.webp"
+            alt="Jhonny Diaz Centeno, desarrollador web Full Stack"
+            class="profile-photo"
+            width="1853"
+            height="2019"
+            priority
+          />
         </div>
       </div>
+    </div>
+    <div class="floating-label">
+      <span class="floating-label-icon" aria-hidden="true">&lt;/&gt;</span>
+      <span><strong>Full Stack</strong><small>De la idea al despliegue</small></span>
     </div>
   </div>
 </section>

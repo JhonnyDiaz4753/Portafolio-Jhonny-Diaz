@@ -1,15 +1,16 @@
-<section class="py-10" appReveal>
-  <h2
-    class="text-2xl font-bold leading-tight tracking-tight px-4 pb-6 text-gray-900 dark:text-white"
-  >
-    Habilidades
-  </h2>
-  <div class="flex flex-wrap gap-4 px-4">
+<section id="habilidades" class="portfolio-section skills-section" appReveal>
+  <div class="section-kicker">Herramientas de trabajo</div>
+  <h2 class="section-heading">Tecnologías que utilizo</h2>
+  <p class="skills-intro">
+    Un stack flexible para crear aplicaciones web desde el frontend hasta la base de datos y el
+    despliegue.
+  </p>
+  <div class="skills-grid">
     @for (skill of skills; track skill.name) {
-      <div
-        class="flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary dark:text-primary-200"
-      >
-        <img class="h-6 w-6" [src]="skill.iconUrl" [alt]="skill.name" />
+      <div class="skill-card">
+        <span class="skill-icon">
+          <img [src]="skill.iconUrl" [alt]="''" loading="lazy" />
+        </span>
         <span>{{ skill.name }}</span>
       </div>
     }

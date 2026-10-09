@@ -1,60 +1,240 @@
-.perspective-wrap {
+.hero-section {
+  display: grid;
+  min-height: min(660px, calc(100vh - 7rem));
+  grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  padding: clamp(2rem, 5vw, 4.5rem) clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  margin: 1rem 0 1.15rem;
+  color: var(--text);
+  font-size: clamp(2.65rem, 5.8vw, 5rem);
+  font-weight: 750;
+  letter-spacing: -0.075em;
+  line-height: 1.04;
+}
+
+.gradient-text {
+  background: linear-gradient(105deg, var(--accent) 12%, var(--cyan) 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.hero-actions svg {
+  width: 1rem;
+  height: 1rem;
+  stroke-width: 2;
+}
+
+.hero-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 2rem;
+}
+
+.hero-technologies span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.42rem 0.72rem;
+  background: var(--surface);
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+}
+
+.hero-visual {
+  position: relative;
+  width: min(100%, 540px);
+  justify-self: center;
   perspective: 1400px;
 }
 
 .photo-stack {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
   transform-style: preserve-3d;
-  transition: transform 0.15s ease-out;
+  transition: transform 180ms ease-out;
 }
 
 .photo-window {
-  position: absolute;
-  inset: 0;
-  border-radius: 0.75rem;
   overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
 }
 
-/* decorative layers behind the photo, giving it depth */
 .depth-2 {
-  transform: translateZ(-70px) translate(-14px, -18px);
+  position: absolute;
+  inset: 0;
+  transform: translateZ(-72px) translate(18px, 18px);
+  background: linear-gradient(145deg, var(--cyan), var(--accent));
+  opacity: 0.45;
 }
 
 .depth-1 {
-  transform: translateZ(-35px) translate(-7px, -9px);
+  position: absolute;
+  inset: 0;
+  transform: translateZ(-36px) translate(9px, 9px);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow);
 }
 
 .depth-0 {
-  transform: translateZ(0);
+  position: relative;
   display: flex;
   flex-direction: column;
+  transform: translateZ(0);
+  background: var(--surface-solid);
+  box-shadow: var(--shadow);
 }
 
 .window-bar {
   display: flex;
+  min-height: 2.5rem;
+  flex: 0 0 auto;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  flex-shrink: 0;
+  gap: 0.38rem;
+  border-bottom: 1px solid var(--line);
+  padding: 0.5rem 0.75rem;
 }
 
-.window-bar .dot {
-  width: 8px;
-  height: 8px;
+.dot {
+  width: 0.48rem;
+  height: 0.48rem;
   border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.7;
 }
 
-.window-bar .filename {
-  margin-left: 8px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
+.dot:first-child {
+  background: #ff777f;
+}
+
+.dot:nth-child(2) {
+  background: #f6c660;
+}
+
+.dot:nth-child(3) {
+  background: #58c995;
+}
+
+.filename {
+  margin-left: 0.45rem;
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.63rem;
 }
 
 .photo-frame {
-  flex: 1;
+  width: 100%;
+  flex: 0 0 auto;
+  aspect-ratio: 1853 / 2019;
   overflow: hidden;
+}
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+.floating-label {
+  position: absolute;
+  right: -1.3rem;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  padding: 0.8rem 1rem;
+  background: var(--surface-solid);
+  box-shadow: var(--shadow);
+}
+
+.floating-label-icon {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border-radius: 0.7rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.floating-label strong,
+.floating-label small {
+  display: block;
+}
+
+.floating-label strong {
+  color: var(--text);
+  font-size: 0.83rem;
+}
+
+.floating-label small {
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+@media (max-width: 760px) {
+  .hero-section {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-top: 3.5rem;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-copy .eyebrow,
+  .hero-actions,
+  .hero-technologies {
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.75rem, 10vw, 4rem);
+  }
+
+  .hero-visual {
+    width: min(78vw, 360px);
+  }
+
+  .floating-label {
+    right: -0.65rem;
+    bottom: 1.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

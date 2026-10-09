@@ -1,0 +1,213 @@
+.projects-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.projects-heading .section-heading {
+  margin-bottom: 0;
+}
+
+.projects-heading > p {
+  max-width: 32rem;
+  margin: 0 0 0.2rem;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1vw, 1.15rem);
+  line-height: 1.6;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.15rem;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  box-shadow: 0 28px 75px rgba(0, 0, 0, 0.22);
+}
+
+.project-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-raised);
+}
+
+.project-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 450ms ease;
+}
+
+.project-card:hover .project-image > img {
+  transform: scale(1.04);
+}
+
+.browser-bar {
+  position: absolute;
+  z-index: 1;
+  top: 0.65rem;
+  right: 0.7rem;
+  left: 0.7rem;
+  display: flex;
+  height: 1.75rem;
+  align-items: center;
+  gap: 0.28rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.5rem;
+  padding: 0 0.55rem;
+  background: rgba(15, 16, 22, 0.76);
+  backdrop-filter: blur(10px);
+}
+
+.browser-bar > span:not(.browser-title) {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #ff7f86;
+}
+
+.browser-bar > span:nth-child(2) {
+  background: #f2c469;
+}
+
+.browser-bar > span:nth-child(3) {
+  background: #65d19b;
+}
+
+.browser-title {
+  overflow: hidden;
+  margin-left: 0.35rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.58rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: clamp(1.25rem, 1.7vw, 2rem);
+}
+
+.project-content h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.35rem, 1.55vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+
+.project-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0.65rem 0 1.1rem;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 1vw, 1.12rem);
+  line-height: 1.75;
+  -webkit-box-orient: vertical;
+ 
+}
+
+.technology-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  margin-top: auto;
+}
+
+.technology-list span {
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  padding: 0.32rem 0.5rem;
+  background: var(--surface-raised);
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(0.72rem, 0.78vw, 0.85rem);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.15rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.project-link {
+  display: inline-flex;
+  min-height: 2.35rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  padding: 0.45rem 0.75rem;
+  font-size: clamp(0.85rem, 0.85vw, 0.98rem);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.project-link svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  stroke-width: 1.8;
+}
+
+.project-link-primary {
+  border-color: transparent;
+  background: var(--accent);
+  color: #171626;
+}
+
+.project-link-primary:hover {
+  filter: brightness(1.08);
+}
+
+.project-link-secondary {
+  color: var(--text);
+}
+
+.project-link-secondary:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+@media (max-width: 720px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .projects-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-image > img {
+    transition: none;
+  }
+}

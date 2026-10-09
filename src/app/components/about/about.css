@@ -1,0 +1,62 @@
+.about-panel {
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+}
+
+.about-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.about-heading .section-heading {
+  max-width: 38rem;
+  margin-bottom: 1rem;
+}
+
+.about-code {
+  flex: 0 0 auto;
+  padding-top: 0.55rem;
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+}
+
+.about-copy {
+  max-width: 61rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.05vw, 1.2rem);
+  line-height: 1.9;
+}
+
+.about-focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.2rem;
+  margin-top: 1.6rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.15rem;
+}
+
+.about-focus span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  font-size: clamp(0.88rem, 0.9vw, 1rem);
+  font-weight: 550;
+}
+
+.about-focus i {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+
+@media (max-width: 600px) {
+  .about-code {
+    display: none;
+  }
+}

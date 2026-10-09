@@ -17,8 +17,8 @@ interface Particle {
   color: string;
 }
  
-const ACCENT_A = '17,115,212'; // --color-primary (#1173d4)
-const ACCENT_B = '99,179,237'; // lighter tint of primary, for variety
+const ACCENT_A = '166,163,255';
+const ACCENT_B = '97,217,238';
 const LINK_DISTANCE = 130;
 const MOUSE_RADIUS = 140;
 const DENSITY = 16000; // px^2 per particle — lower = more particles
