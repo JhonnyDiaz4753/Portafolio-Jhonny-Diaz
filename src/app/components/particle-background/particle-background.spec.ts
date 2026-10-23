@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ParticleBackground } from './particle-background';
@@ -8,7 +9,8 @@ describe('ParticleBackground', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ParticleBackground]
+      imports: [ParticleBackground],
+      providers: [provideZonelessChangeDetection()]
     })
     .compileComponents();
 

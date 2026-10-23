@@ -2,17 +2,25 @@
   <div class="section-kicker">Herramientas de trabajo</div>
   <h2 class="section-heading">Tecnologías que utilizo</h2>
   <p class="skills-intro">
-    Un stack flexible para crear aplicaciones web desde el frontend hasta la base de datos y el
-    despliegue.
+    Mi stack principal en el día a día y las herramientas que estoy reforzando para seguir
+    ampliando el perfil full stack.
   </p>
-  <div class="skills-grid">
-    @for (skill of skills; track skill.name) {
-      <div class="skill-card">
-        <span class="skill-icon">
-          <img [src]="skill.iconUrl" [alt]="''" loading="lazy" />
-        </span>
-        <span>{{ skill.name }}</span>
+  @for (group of skillGroups; track group.title) {
+    <div class="skill-group">
+      <div class="skill-group-heading">
+        <h3>{{ group.title }}</h3>
+        <p>{{ group.description }}</p>
       </div>
-    }
-  </div>
+      <div class="skills-grid">
+        @for (skill of group.skills; track skill.name) {
+          <div class="skill-card">
+            <span class="skill-icon">
+              <img [src]="skill.iconUrl" alt="" loading="lazy" />
+            </span>
+            <span>{{ skill.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
 </section>

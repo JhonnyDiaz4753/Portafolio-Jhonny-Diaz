@@ -44,6 +44,19 @@
   box-sizing: border-box;
 }
 
+/* Theme toggle icons: both are rendered so server and client markup match. */
+.theme-icon-sun {
+  display: none;
+}
+
+.dark .theme-icon-sun {
+  display: block;
+}
+
+.dark .theme-icon-moon {
+  display: none;
+}
+
 html {
   min-width: 320px;
   scroll-behavior: smooth;
@@ -71,6 +84,35 @@ a {
 
 a {
   color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: 0.6rem;
+  padding: 0.7rem 1rem;
+  background: var(--accent);
+  color: #171626;
+  font-weight: 650;
+  text-decoration: none;
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 ::selection {
@@ -193,12 +235,15 @@ a {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
   transition: opacity 650ms ease, transform 650ms ease;
 }
 
-.reveal.in-view {
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.js .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
 }
@@ -223,7 +268,7 @@ a {
     transition-duration: 0.01ms !important;
   }
 
-  .reveal {
+  .js .reveal {
     opacity: 1;
     transform: none;
   }

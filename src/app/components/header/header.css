@@ -80,7 +80,7 @@
 }
 
 .desktop-nav a,
-.mobile-nav a {
+.mobile-nav a:not(.button-primary) {
   border-radius: 0.55rem;
   color: var(--muted);
   font-size: 0.9rem;
@@ -94,7 +94,7 @@
 }
 
 .desktop-nav a:hover,
-.mobile-nav a:hover {
+.mobile-nav a:not(.button-primary):hover {
   background: var(--accent-soft);
   color: var(--accent);
 }
@@ -175,6 +175,11 @@
   }
 
   .mobile-nav {
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    left: 1rem;
+    z-index: 1;
     display: flex;
     visibility: hidden;
     max-height: 0;
@@ -182,24 +187,27 @@
     gap: 0.2rem;
     overflow: hidden;
     margin-top: 0;
-    border: 0 solid var(--line);
-    border-radius: 0 0 1rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
     padding: 0 0.85rem;
     background: var(--surface-solid);
+    box-shadow: var(--shadow);
     opacity: 0;
-    transition: max-height 240ms ease, opacity 180ms ease, padding 240ms ease, margin 240ms ease;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: max-height 240ms ease, opacity 180ms ease, padding 240ms ease, transform 180ms ease;
   }
 
   .mobile-nav.is-open {
     visibility: visible;
     max-height: 24rem;
-    margin-top: 0.35rem;
-    border-width: 1px;
     padding-block: 0.6rem 0.85rem;
     opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
-  .mobile-nav a {
+  .mobile-nav a:not(.button-primary) {
     padding: 0.7rem 0.65rem;
   }
 

@@ -13,30 +13,47 @@ export class ThemeService {
   readonly theme = signal<Theme>(this.resolveInitialTheme());
 
   constructor() {
-    // Keep the <html class="dark"> attribute and localStorage in sync
-    // with the theme signal. Guarded so it never touches the DOM during SSR.
+    // Keep the <html class="dark"> attribute in sync with the theme signal.
+    // Guarded so it never touches the DOM during SSR. The theme is persisted
+    // only when the user toggles it, so the first visit keeps following the
+    // operating-system preference.
     effect(() => {
       const theme = this.theme();
       if (!this.isBrowser) {
         return;
       }
       document.documentElement.classList.toggle('dark', theme === 'dark');
-      localStorage.setItem(THEME_STORAGE_KEY, theme);
     });
   }
 
   toggle(): void {
-    this.theme.update((current) => (current === 'dark' ? 'light' : 'dark'));
+    const next: Theme = this.theme() === 'dark' ? 'light' : 'dark';
+    this.theme.set(next);
+
+    if (this.isBrowser) {
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, next);
+      } catch {
+        // Storage can be unavailable (private mode, blocked cookies); the
+        // in-memory theme still works for the current session.
+      }
+    }
   }
 
   private resolveInitialTheme(): Theme {
     if (!this.isBrowser) {
-      // Default for the server-rendered HTML; the effect above corrects
-      // it on the client as soon as the app boots, if needed.
+      // Default for the server-rendered HTML. The theme no longer changes
+      // markup during SSR, so this value does not affect hydration.
       return 'dark';
     }
 
-    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem(THEME_STORAGE_KEY);
+    } catch {
+      // Fall through to the OS preference.
+    }
+
     if (stored === 'light' || stored === 'dark') {
       return stored;
     }

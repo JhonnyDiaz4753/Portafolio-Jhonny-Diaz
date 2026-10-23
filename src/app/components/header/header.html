@@ -21,25 +21,31 @@
         type="button"
         class="icon-button theme-button"
         (click)="toggleTheme()"
-        [attr.aria-label]="isDarkMode() ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
+        aria-label="Cambiar entre tema claro y oscuro"
+        title="Cambiar tema"
       >
-        <svg *ngIf="isDarkMode()" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <circle cx="12" cy="12" r="4"></circle>
           <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
         </svg>
-        <svg *ngIf="!isDarkMode()" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
         </svg>
       </button>
 
-      <button type="button" class="button-primary cv-button" (click)="downloadCV()">
+      <a
+        class="button-primary cv-button"
+        href="/CV/cv_Jhonny_Diaz.pdf"
+        download="cv_Jhonny_Diaz.pdf"
+      >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"></path>
         </svg>
         <span>Descargar CV</span>
-      </button>
+      </a>
 
       <button
+        #menuButton
         type="button"
         class="icon-button menu-button"
         (click)="toggleMenu()"
@@ -61,7 +67,6 @@
     id="mobile-navigation"
     class="mobile-nav"
     [class.is-open]="isMenuOpen"
-    [attr.aria-hidden]="!isMenuOpen"
     aria-label="Navegación móvil"
   >
     <a href="#inicio" (click)="closeMenu()">Inicio</a>
@@ -69,8 +74,13 @@
     <a href="#proyectos" (click)="closeMenu()">Proyectos</a>
     <a href="#habilidades" (click)="closeMenu()">Habilidades</a>
     <a href="#contacto" (click)="closeMenu()">Contacto</a>
-    <button type="button" class="button-primary mobile-cv-button" (click)="downloadCV(); closeMenu()">
+    <a
+      class="button-primary mobile-cv-button"
+      href="/CV/cv_Jhonny_Diaz.pdf"
+      download="cv_Jhonny_Diaz.pdf"
+      (click)="closeMenu()"
+    >
       Descargar CV
-    </button>
+    </a>
   </nav>
 </header>

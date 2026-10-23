@@ -29,6 +29,8 @@ Desarrollador web full stack con experiencia práctica en el ciclo completo de d
 | **Admin Q-sopa** | Panel de administración full-stack para restaurante: CRUD, POS, historial de ventas y dashboard de estadísticas | [Ver demo](https://admin-q-sopa.vercel.app/) | [GitHub](https://github.com/JhonnyDiaz4753/Admin_Q_sopa) |
 | **Q-Sopa** | Menú digital para restaurante con navegación por categorías en tiempo real vía API REST propia | [Ver demo](https://qsopav01.vercel.app/) | [GitHub](https://github.com/JhonnyDiaz4753/Q_sopa) |
 
+> El panel de administración requiere inicio de sesión. Si quieres probarlo, escríbeme y te comparto un acceso de demostración.
+
 ## Correr el proyecto localmente
 
 Clona el repositorio e instala las dependencias:
@@ -61,8 +63,11 @@ Los artefactos de build quedan en `dist/portafolio`.
 ng test
 ```
 
+> Karma lanza Chrome/Chromium. Si solo tienes Edge, define `CHROME_BIN` con la ruta a `msedge.exe` antes de ejecutar los tests.
+
 ## Contacto
 
+- Email: [jhonnydiaz@estudiante.uniajc.edu.co](mailto:jhonnydiaz@estudiante.uniajc.edu.co)
 - LinkedIn: [Jhonny Diaz Centeno](http://www.linkedin.com/in/jhonny-diaz-centeno-567225378)
 - GitHub: [@JhonnyDiaz4753](https://github.com/JhonnyDiaz4753)
 

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../Service/theme_services';
 
@@ -9,10 +9,34 @@ import { ThemeService } from '../../Service/theme_services';
   styleUrl: './header.css'
 })
 export class Header {
+  @ViewChild('menuButton') private menuButton?: ElementRef<HTMLButtonElement>;
+
   private readonly themeService = inject(ThemeService);
-  readonly isDarkMode = computed(() => this.themeService.theme() === 'dark');
+  private readonly host = inject(ElementRef<HTMLElement>);
 
   isMenuOpen = false;
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (!this.isMenuOpen) {
+      return;
+    }
+
+    this.closeMenu();
+    this.menuButton?.nativeElement.focus();
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.isMenuOpen) {
+      return;
+    }
+
+    const target = event.target;
+    if (target instanceof Node && !this.host.nativeElement.contains(target)) {
+      this.closeMenu();
+    }
+  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -24,12 +48,5 @@ export class Header {
 
   toggleTheme(): void {
     this.themeService.toggle();
-  }
-
-   downloadCV(): void {
-    const link = document.createElement('a');
-    link.href = 'CV/cv_Jhonny_DIaz.pdf';
-    link.download = 'cv_Jhonny_DIaz.pdf'; 
-    link.click();
   }
 }

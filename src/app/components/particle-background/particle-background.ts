@@ -44,8 +44,33 @@ export class ParticleBackground implements AfterViewInit, OnDestroy {
   private mouse = { x: -9999, y: -9999 };
   private reducedMotion = false;
   private animationFrameId = 0;
+  private resizeFrameId = 0;
  
-  private readonly onResize = () => this.resize();
+  private readonly onResize = () => {
+    if (this.resizeFrameId) {
+      return;
+    }
+    this.resizeFrameId = requestAnimationFrame(() => {
+      this.resizeFrameId = 0;
+      this.resize();
+      if (this.reducedMotion) {
+        this.step();
+      }
+    });
+  };
+
+  private readonly onVisibilityChange = () => {
+    if (document.hidden) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = 0;
+      return;
+    }
+
+    if (!this.animationFrameId) {
+      this.step();
+    }
+  };
+
   private readonly onMouseMove = (e: MouseEvent) => {
     this.mouse.x = e.clientX;
     this.mouse.y = e.clientY;
@@ -63,9 +88,10 @@ export class ParticleBackground implements AfterViewInit, OnDestroy {
     this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.ctx = this.canvasRef.nativeElement.getContext('2d')!;
  
-    window.addEventListener('resize', this.onResize);
-    window.addEventListener('mousemove', this.onMouseMove);
-    window.addEventListener('mouseleave', this.onMouseLeave);
+    window.addEventListener('resize', this.onResize, { passive: true });
+    window.addEventListener('mousemove', this.onMouseMove, { passive: true });
+    window.addEventListener('mouseleave', this.onMouseLeave, { passive: true });
+    document.addEventListener('visibilitychange', this.onVisibilityChange);
  
     this.resize();
     this.step();
@@ -78,12 +104,14 @@ export class ParticleBackground implements AfterViewInit, OnDestroy {
     window.removeEventListener('resize', this.onResize);
     window.removeEventListener('mousemove', this.onMouseMove);
     window.removeEventListener('mouseleave', this.onMouseLeave);
+    document.removeEventListener('visibilitychange', this.onVisibilityChange);
     cancelAnimationFrame(this.animationFrameId);
+    cancelAnimationFrame(this.resizeFrameId);
   }
  
   private resize(): void {
     const canvas = this.canvasRef.nativeElement;
-    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     this.width = window.innerWidth;
     this.height = window.innerHeight;
  
@@ -122,7 +150,7 @@ export class ParticleBackground implements AfterViewInit, OnDestroy {
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
         const dist = Math.hypot(dx, dy);
-        if (dist < MOUSE_RADIUS) {
+        if (dist > 0.5 && dist < MOUSE_RADIUS) {
           const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
           p.x += (dx / dist) * force * 1.1;
           p.y += (dy / dist) * force * 1.1;

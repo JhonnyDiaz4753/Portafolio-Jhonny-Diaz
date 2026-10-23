@@ -6,6 +6,36 @@
   line-height: 1.7;
 }
 
+.skill-group + .skill-group {
+  margin-top: 1.9rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.55rem;
+}
+
+.skill-group-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.skill-group-heading h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.05rem, 1.25vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.skill-group-heading p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
