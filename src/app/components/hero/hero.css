@@ -76,7 +76,13 @@
   position: relative;
   width: 100%;
   transform-style: preserve-3d;
-  transition: transform 180ms ease-out;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Tracking is updated on every animation frame. Keeping a transition active
+   while tracking would restart it on each frame and make the tilt feel laggy. */
+.photo-stack.is-tracking {
+  transition: none;
 }
 
 .photo-window {

@@ -8,3 +8,11 @@
   z-index: -1;
   pointer-events: none;
 }
+
+/* The animation loop is disabled on touch/mobile devices to keep scroll
+   compositing cheap. The body gradients remain as the page background. */
+@media (pointer: coarse), (max-width: 820px) {
+  .particle-canvas {
+    display: none;
+  }
+}

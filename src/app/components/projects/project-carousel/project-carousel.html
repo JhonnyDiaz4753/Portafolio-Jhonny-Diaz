@@ -25,13 +25,18 @@
           class="carousel-slide"
           [attr.aria-hidden]="index !== activeIndex() ? 'true' : null"
         >
-          <img
-            [ngSrc]="image.src"
-            [alt]="image.alt"
-            [width]="image.width"
-            [height]="image.height"
-            loading="lazy"
-          />
+          @if (isVisibleSlide(index)) {
+            <img
+              [src]="image.src"
+              [attr.srcset]="imageSrcset(image)"
+              [attr.sizes]="imageSizes()"
+              [attr.alt]="image.alt"
+              [attr.width]="image.width"
+              [attr.height]="image.height"
+              loading="lazy"
+              decoding="async"
+            />
+          }
         </figure>
       }
     </div>

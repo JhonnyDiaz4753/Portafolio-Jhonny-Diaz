@@ -15,7 +15,14 @@
         @for (skill of group.skills; track skill.name) {
           <div class="skill-card">
             <span class="skill-icon">
-              <img [src]="skill.iconUrl" alt="" loading="lazy" />
+              <img
+                [src]="skill.iconUrl"
+                alt=""
+                width="24"
+                height="24"
+                loading="lazy"
+                decoding="async"
+              />
             </span>
             <span>{{ skill.name }}</span>
           </div>

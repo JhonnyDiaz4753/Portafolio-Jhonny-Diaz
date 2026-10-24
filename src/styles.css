@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -246,6 +262,20 @@ main:focus {
 .js .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* On phones and touch devices, backdrop blur over scrolling content is very
+   expensive. Use nearly opaque surfaces instead; the border and shadow keep
+   the same visual language without the per-frame GPU cost. */
+@media (pointer: coarse), (max-width: 820px) {
+  .glass-panel,
+  .project-card,
+  .skill-card {
+    background: color-mix(in srgb, var(--surface-solid) 94%, transparent);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.14);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 @media (max-width: 640px) {

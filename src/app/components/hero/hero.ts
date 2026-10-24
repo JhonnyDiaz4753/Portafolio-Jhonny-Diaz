@@ -1,12 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnDestroy,
-  PLATFORM_ID,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
 import {
   IMAGE_LOADER,
   NgOptimizedImage,
@@ -38,21 +30,36 @@ function heroImageLoader(config: ImageLoaderConfig): string {
 })
 export class Hero implements OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
-  private readonly el = inject(ElementRef<HTMLElement>);
-  private readonly reducedMotion =
+  private readonly canTilt =
     isPlatformBrowser(this.platformId) &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   protected readonly rotateX = signal(0);
   protected readonly rotateY = signal(0);
+  protected readonly tracking = signal(false);
 
   private frameId = 0;
   private pendingEvent: MouseEvent | null = null;
+  private visualRect: DOMRect | null = null;
 
-  @HostListener('mousemove', ['$event'])
-  onMouseMove(event: MouseEvent): void {
-    if (this.reducedMotion) {
+  protected onMouseEnter(event: MouseEvent): void {
+    if (!this.canTilt) {
       return;
+    }
+
+    this.visualRect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+    this.tracking.set(true);
+  }
+
+  protected onMouseMove(event: MouseEvent): void {
+    if (!this.canTilt) {
+      return;
+    }
+
+    if (!this.visualRect) {
+      this.visualRect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+      this.tracking.set(true);
     }
 
     this.pendingEvent = event;
@@ -69,8 +76,8 @@ export class Hero implements OnDestroy {
         return;
       }
 
-      const rect = this.el.nativeElement.getBoundingClientRect();
-      if (!rect.width || !rect.height) {
+      const rect = this.visualRect;
+      if (!rect || !rect.width || !rect.height) {
         return;
       }
 
@@ -81,14 +88,15 @@ export class Hero implements OnDestroy {
     });
   }
 
-  @HostListener('mouseleave')
-  onMouseLeave(): void {
+  protected onMouseLeave(): void {
     if (this.frameId) {
       cancelAnimationFrame(this.frameId);
       this.frameId = 0;
     }
 
     this.pendingEvent = null;
+    this.visualRect = null;
+    this.tracking.set(false);
     this.rotateX.set(0);
     this.rotateY.set(0);
   }
