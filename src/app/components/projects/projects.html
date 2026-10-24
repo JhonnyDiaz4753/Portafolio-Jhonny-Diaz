@@ -9,26 +9,22 @@
 
   <div class="project-grid">
     @for (project of projects; track project.id) {
-      <article class="project-card">
-        <div
-          class="project-image"
-          [style.aspect-ratio]="project.imageWidth + ' / ' + project.imageHeight"
-        >
-          <div class="browser-bar" aria-hidden="true">
-            <span></span><span></span><span></span>
-            <span class="browser-title">{{ project.id }}.app</span>
-          </div>
-          <img
-            [ngSrc]="project.imageUrl"
-            [alt]="project.imageAlt"
-            loading="lazy"
-            [width]="project.imageWidth"
-            [height]="project.imageHeight"
-          />
-        </div>
+      <article class="project-card" [class.project-card--featured]="project.featured">
+        <app-project-carousel
+          [images]="project.images"
+          [title]="project.title"
+          [media]="project.media ?? 'browser'"
+          [browserTitle]="project.id + '.app'"
+          [featured]="project.featured ?? false"
+        />
 
         <div class="project-content">
-          <h3>{{ project.title }}</h3>
+          <div class="project-title-row">
+            <h3>{{ project.title }}</h3>
+            @if (project.private) {
+              <span class="project-badge">Privado</span>
+            }
+          </div>
           <p class="project-description">{{ project.description }}</p>
 
           <div class="technology-list" aria-label="Tecnologías utilizadas">
@@ -38,30 +34,43 @@
           </div>
 
           <div class="project-actions">
-            <a
-              class="project-link project-link-primary"
-              [href]="project.demoUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Ver demo de {{ project.title }} (abre en una nueva pestaña)"
-            >
-              Ver proyecto
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M14 4h6v6m-11 4L20 4M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"></path>
-              </svg>
-            </a>
-            <a
-              class="project-link project-link-secondary"
-              [href]="project.repoUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Ver código de {{ project.title }} en GitHub (abre en una nueva pestaña)"
-            >
-              GitHub
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.7c3-.3 6.2-1.5 6.2-6.7a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.2-.4-3.8 1.4a13.2 13.2 0 0 0-6.9 0C5.5 1.1 4.3 1.5 4.3 1.5a4.8 4.8 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-.9 2.7V22"></path>
-              </svg>
-            </a>
+            @if (project.demoUrl) {
+              <a
+                class="project-link project-link-primary"
+                [href]="project.demoUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ver demo de {{ project.title }} (abre en una nueva pestaña)"
+              >
+                Ver proyecto
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path d="M14 4h6v6m-11 4L20 4M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"></path>
+                </svg>
+              </a>
+            }
+            @if (project.repoUrl) {
+              <a
+                class="project-link project-link-secondary"
+                [href]="project.repoUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ver código de {{ project.title }} en GitHub (abre en una nueva pestaña)"
+              >
+                GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.7c3-.3 6.2-1.5 6.2-6.7a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.2-.4-3.8 1.4a13.2 13.2 0 0 0-6.9 0C5.5 1.1 4.3 1.5 4.3 1.5a4.8 4.8 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-.9 2.7V22"></path>
+                </svg>
+              </a>
+            }
+            @if (!project.demoUrl && !project.repoUrl) {
+              <a
+                class="project-link project-link-secondary"
+                href="#contacto"
+                aria-label="Solicitar una demo de {{ project.title }}"
+              >
+                Solicitar demo
+              </a>
+            }
           </div>
         </div>
       </article>

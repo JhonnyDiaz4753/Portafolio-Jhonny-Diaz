@@ -1,12 +1,19 @@
+export interface ProjectImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export interface Project {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;
-  imageAlt: string;
-  imageWidth: number;
-  imageHeight: number;
+  images: ProjectImage[];
+  media?: 'browser' | 'phone';
+  featured?: boolean;
+  private?: boolean;
   technologies: string[];
-  demoUrl: string;
-  repoUrl: string;
+  demoUrl?: string;
+  repoUrl?: string;
 }

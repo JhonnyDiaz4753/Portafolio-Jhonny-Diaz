@@ -20,6 +20,7 @@ Desarrollador web full stack con experiencia práctica en el ciclo completo de d
 - 🌗 Modo claro/oscuro persistente, con detección automática de la preferencia del sistema
 - 📱 Totalmente responsive, con menú lateral (drawer) en móvil
 - ⚡ Imágenes optimizadas en WebP con `NgOptimizedImage` (lazy-loading + prevención de layout shift)
+- 🖼️ Carrusel accesible de capturas por proyecto, con navegación por teclado y swipe
 - 🧩 Contenido de proyectos y habilidades data-driven (arrays tipados en TypeScript), no hardcodeado en el HTML
 
 ## Proyectos destacados
@@ -28,6 +29,7 @@ Desarrollador web full stack con experiencia práctica en el ciclo completo de d
 |---|---|---|---|
 | **Admin Q-sopa** | Panel de administración full-stack para restaurante: CRUD, POS, historial de ventas y dashboard de estadísticas | [Ver demo](https://admin-q-sopa.vercel.app/) | [GitHub](https://github.com/JhonnyDiaz4753/Admin_Q_sopa) |
 | **Q-Sopa** | Menú digital para restaurante con navegación por categorías en tiempo real vía API REST propia | [Ver demo](https://qsopav01.vercel.app/) | [GitHub](https://github.com/JhonnyDiaz4753/Q_sopa) |
+| **GymRoutineLab** | App móvil de entrenamiento con Angular, Ionic y Capacitor: login con Google, rutinas, entrenamiento por voz, progreso y generación automática | Bajo solicitud | Privado |
 
 > El panel de administración requiere inicio de sesión. Si quieres probarlo, escríbeme y te comparto un acceso de demostración.
 

@@ -22,6 +22,60 @@
       .theme-button {
         display: none !important;
       }
+
+      .browser-bar,
+      .carousel-arrow,
+      .carousel-footer {
+        display: none !important;
+      }
+
+      app-project-carousel {
+        display: block;
+      }
+
+      .project-carousel {
+        position: relative;
+        overflow: hidden;
+        background: var(--surface-raised);
+      }
+
+      .carousel-viewport {
+        overflow: hidden;
+      }
+
+      .carousel-track {
+        display: flex;
+      }
+
+      .carousel-slide {
+        flex: 0 0 100%;
+        min-width: 0;
+        margin: 0;
+      }
+
+      .carousel-slide:not(:first-child) {
+        display: none !important;
+      }
+
+      .carousel-slide img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .project-carousel--phone {
+        display: grid;
+        place-items: center;
+        padding: 1.25rem;
+        background: #0c0d12;
+      }
+
+      .project-carousel--phone .carousel-viewport {
+        width: min(72%, 18rem);
+        overflow: hidden;
+        border: 0.45rem solid #08090d;
+        border-radius: 1.8rem;
+      }
     </style>
   </noscript>
   <base href="/">

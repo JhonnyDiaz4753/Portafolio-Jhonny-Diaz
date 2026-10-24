@@ -39,63 +39,19 @@
   box-shadow: 0 28px 75px rgba(0, 0, 0, 0.22);
 }
 
-.project-image {
-  position: relative;
-  overflow: hidden;
-  background: var(--surface-raised);
+.project-card--featured {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
 }
 
-.project-image > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 450ms ease;
+.project-card--featured .project-content {
+  justify-content: center;
+  border-left: 1px solid var(--line);
 }
 
-.project-card:hover .project-image > img {
-  transform: scale(1.04);
-}
-
-.browser-bar {
-  position: absolute;
-  z-index: 1;
-  top: 0.65rem;
-  right: 0.7rem;
-  left: 0.7rem;
-  display: flex;
-  height: 1.75rem;
-  align-items: center;
-  gap: 0.28rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 0.5rem;
-  padding: 0 0.55rem;
-  background: rgba(15, 16, 22, 0.76);
-  backdrop-filter: blur(10px);
-}
-
-.browser-bar > span:not(.browser-title) {
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: #ff7f86;
-}
-
-.browser-bar > span:nth-child(2) {
-  background: #f2c469;
-}
-
-.browser-bar > span:nth-child(3) {
-  background: #65d19b;
-}
-
-.browser-title {
-  overflow: hidden;
-  margin-left: 0.35rem;
-  color: rgba(255, 255, 255, 0.72);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.58rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.project-card--featured .technology-list {
+  margin-top: 1.2rem;
 }
 
 .project-content {
@@ -105,6 +61,13 @@
   padding: clamp(1.25rem, 1.7vw, 2rem);
 }
 
+.project-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.75rem;
+}
+
 .project-content h3 {
   margin: 0;
   color: var(--text);
@@ -112,6 +75,19 @@
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.4;
+}
+
+.project-badge {
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .project-description {
@@ -191,6 +167,16 @@
   background: var(--accent-soft);
 }
 
+@media (max-width: 900px) {
+  .project-card--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card--featured .project-content {
+    border-left: 0;
+  }
+}
+
 @media (max-width: 720px) {
   .project-grid {
     grid-template-columns: 1fr;
@@ -206,8 +192,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card,
-  .project-image > img {
+  .project-card {
     transition: none;
   }
 }

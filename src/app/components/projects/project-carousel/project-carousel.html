@@ -1,0 +1,80 @@
+<div
+  class="project-carousel"
+  [class.project-carousel--phone]="media() === 'phone'"
+  [style.aspect-ratio]="media() === 'browser' ? aspectRatio() : null"
+  role="region"
+  [attr.aria-roledescription]="hasMultiple() ? 'carrusel' : null"
+  [attr.aria-label]="'Capturas de ' + title()"
+  [attr.tabindex]="hasMultiple() ? 0 : null"
+  (keydown)="onKeydown($event)"
+  (pointerdown)="onPointerDown($event)"
+  (pointerup)="onPointerUp($event)"
+  (pointercancel)="onPointerCancel()"
+>
+  @if (media() === 'browser') {
+    <div class="browser-bar" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <span class="browser-title">{{ browserTitle() }}</span>
+    </div>
+  }
+
+  <div class="carousel-viewport">
+    <div class="carousel-track" [style.transform]="slideTransform()">
+      @for (image of images(); track image.src; let index = $index) {
+        <figure
+          class="carousel-slide"
+          [attr.aria-hidden]="index !== activeIndex() ? 'true' : null"
+        >
+          <img
+            [ngSrc]="image.src"
+            [alt]="image.alt"
+            [width]="image.width"
+            [height]="image.height"
+            loading="lazy"
+          />
+        </figure>
+      }
+    </div>
+  </div>
+
+  @if (hasMultiple()) {
+    <button
+      type="button"
+      class="carousel-arrow carousel-arrow--previous"
+      (click)="previous()"
+      [attr.aria-label]="'Captura anterior de ' + title()"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="carousel-arrow carousel-arrow--next"
+      (click)="next()"
+      [attr.aria-label]="'Captura siguiente de ' + title()"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <path d="m9 18 6-6-6-6"></path>
+      </svg>
+    </button>
+
+    <div class="carousel-footer">
+      <div class="carousel-dots" role="group" aria-label="Seleccionar captura">
+        @for (image of images(); track image.src; let index = $index) {
+          <button
+            type="button"
+            class="carousel-dot"
+            [class.is-active]="index === activeIndex()"
+            [attr.aria-label]="'Ir a la captura ' + (index + 1) + ' de ' + total()"
+            [attr.aria-current]="index === activeIndex() ? 'true' : null"
+            (click)="goTo(index)"
+          ></button>
+        }
+      </div>
+      <p class="carousel-status" aria-live="polite" aria-atomic="true">
+        {{ activeIndex() + 1 }} / {{ total() }}
+      </p>
+    </div>
+  }
+</div>
