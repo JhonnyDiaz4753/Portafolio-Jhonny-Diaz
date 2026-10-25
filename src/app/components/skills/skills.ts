@@ -20,6 +20,7 @@ export class Skills {
         { name: 'JavaScript', iconUrl: '/icons/javascript.svg' },
         { name: 'Spring Boot', iconUrl: '/icons/spring.svg' },
         { name: 'Java', iconUrl: '/icons/java.svg' },
+         { name: 'Docker', iconUrl: '/icons/docker.svg' },
         { name: 'PostgreSQL', iconUrl: '/icons/postgresql.svg' },
         { name: 'Git', iconUrl: '/icons/git.svg' },
       ],
@@ -30,7 +31,6 @@ export class Skills {
       skills: [
         { name: 'Node.js', iconUrl: '/icons/nodejs.svg' },
         { name: 'MySQL', iconUrl: '/icons/mysql.svg' },
-        { name: 'Docker', iconUrl: '/icons/docker.svg' },
         { name: 'AWS', iconUrl: '/icons/aws.svg' },
       ],
     },
