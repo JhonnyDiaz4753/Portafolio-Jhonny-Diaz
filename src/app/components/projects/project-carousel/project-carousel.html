@@ -1,6 +1,7 @@
 <div
   class="project-carousel"
   [class.project-carousel--phone]="media() === 'phone'"
+  [class.project-carousel--fill]="fill()"
   [style.aspect-ratio]="media() === 'browser' ? aspectRatio() : null"
   role="region"
   [attr.aria-roledescription]="hasMultiple() ? 'carrusel' : null"

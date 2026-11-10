@@ -3,7 +3,10 @@ import { ProjectImage } from '../../../models/Proyect';
 
 @Component({
   selector: 'app-project-carousel',
-  host: { '[class.project-carousel-host--featured]': 'featured()' },
+  host: {
+    '[class.project-carousel-host--featured]': 'featured()',
+    '[class.project-carousel-host--fill]': 'fill()',
+  },
   templateUrl: './project-carousel.html',
   styleUrl: './project-carousel.css',
 })
@@ -13,6 +16,7 @@ export class ProjectCarousel {
   readonly media = input<'browser' | 'phone'>('browser');
   readonly browserTitle = input('');
   readonly featured = input(false);
+  readonly fill = input(false);
 
   protected readonly activeIndex = signal(0);
   protected readonly total = computed(() => this.images().length);
@@ -102,22 +106,24 @@ export class ProjectCarousel {
 
     switch (event.key) {
       case 'ArrowLeft':
-        event.preventDefault();
         this.previous();
         break;
       case 'ArrowRight':
-        event.preventDefault();
         this.next();
         break;
       case 'Home':
-        event.preventDefault();
         this.goTo(0);
         break;
       case 'End':
-        event.preventDefault();
         this.goTo(this.total() - 1);
         break;
+      default:
+        return;
     }
+
+    // Keep screenshot navigation from also moving the outer project carousel.
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   protected onPointerDown(event: PointerEvent): void {

@@ -7,73 +7,168 @@
     <p>Aplicaciones reales donde conecto diseño, desarrollo y producto.</p>
   </div>
 
-  <div class="project-grid">
-    @for (project of projects; track project.id) {
-      <article class="project-card" [class.project-card--featured]="project.featured">
-        <app-project-carousel
-          [images]="project.images"
-          [title]="project.title"
-          [media]="project.media ?? 'browser'"
-          [browserTitle]="project.id + '.app'"
-          [featured]="project.featured ?? false"
-        />
+  <div
+    class="projects-carousel"
+    role="region"
+    aria-roledescription="carrusel"
+    aria-label="Proyectos destacados"
+    tabindex="0"
+    (keydown)="onKeydown($event)"
+  >
+    <div
+      class="projects-stage"
+      (mouseenter)="onHoverStart()"
+      (mouseleave)="onHoverEnd()"
+      (focusin)="onFocusIn()"
+      (focusout)="onFocusOut($event)"
+    >
+      @for (project of projects; track project.id; let index = $index) {
+        @if (index === activeIndex()) {
+          <article class="project-card project-slide" [attr.aria-label]="project.title">
+            <app-project-carousel
+              [images]="project.images"
+              [title]="project.title"
+              [media]="project.media ?? 'browser'"
+              [browserTitle]="project.id + '.app'"
+              [featured]="project.featured ?? false"
+              [fill]="true"
+            />
 
-        <div class="project-content">
-          <div class="project-title-row">
-            <h3>{{ project.title }}</h3>
-            @if (project.private) {
-              <span class="project-badge">Privado</span>
-            }
-          </div>
-          <p class="project-description">{{ project.description }}</p>
+            <div class="project-content">
+              <div class="project-meta" aria-hidden="true">
+                <span class="project-index">{{ formatNumber(index + 1) }}</span>
+                <span class="project-media-type">
+                  {{ project.media === 'phone' ? 'App móvil' : 'Aplicación web' }}
+                </span>
+              </div>
 
-          <div class="technology-list" aria-label="Tecnologías utilizadas">
-            @for (technology of project.technologies; track technology) {
-              <span>{{ technology }}</span>
-            }
-          </div>
+              <div class="project-title-row">
+                <h3>{{ project.title }}</h3>
+                @if (project.private) {
+                  <span class="project-badge">Privado</span>
+                }
+              </div>
 
-          <div class="project-actions">
-            @if (project.demoUrl) {
-              <a
-                class="project-link project-link-primary"
-                [href]="project.demoUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Ver demo de {{ project.title }} (abre en una nueva pestaña)"
-              >
-                Ver proyecto
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M14 4h6v6m-11 4L20 4M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"></path>
-                </svg>
-              </a>
-            }
-            @if (project.repoUrl) {
-              <a
-                class="project-link project-link-secondary"
-                [href]="project.repoUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Ver código de {{ project.title }} en GitHub (abre en una nueva pestaña)"
-              >
-                GitHub
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.7c3-.3 6.2-1.5 6.2-6.7a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.2-.4-3.8 1.4a13.2 13.2 0 0 0-6.9 0C5.5 1.1 4.3 1.5 4.3 1.5a4.8 4.8 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-.9 2.7V22"></path>
-                </svg>
-              </a>
-            }
-            @if (!project.demoUrl && !project.repoUrl) {
-              <a
-                class="project-link project-link-secondary"
-                href="#contacto"
-                aria-label="Solicitar una demo de {{ project.title }}"
-              >
-                Solicitar demo
-              </a>
-            }
-          </div>
-        </div>
-      </article>
-    }
+              @if (project.description) {
+                <p class="project-description">{{ project.description }}</p>
+              }
+
+              @if (project.technologies.length > 0) {
+                <div class="technology-list" aria-label="Tecnologías utilizadas">
+                  @for (technology of project.technologies; track technology) {
+                    <span>{{ technology }}</span>
+                  }
+                </div>
+              }
+
+              <div class="project-actions">
+                @if (project.demoUrl) {
+                  <a
+                    class="project-link project-link-primary"
+                    [href]="project.demoUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver demo de {{ project.title }} (abre en una nueva pestaña)"
+                  >
+                    Ver proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                      <path d="M14 4h6v6m-11 4L20 4M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"></path>
+                    </svg>
+                  </a>
+                }
+                @if (project.repoUrl) {
+                  <a
+                    class="project-link project-link-secondary"
+                    [href]="project.repoUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver código de {{ project.title }} en GitHub (abre en una nueva pestaña)"
+                  >
+                    GitHub
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                      <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.7c3-.3 6.2-1.5 6.2-6.7a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.2-.4-3.8 1.4a13.2 13.2 0 0 0-6.9 0C5.5 1.1 4.3 1.5 4.3 1.5a4.8 4.8 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-.9 2.7V22"></path>
+                    </svg>
+                  </a>
+                }
+                @if (!project.demoUrl && !project.repoUrl) {
+                  <a
+                    class="project-link project-link-secondary"
+                    href="#contacto"
+                    aria-label="Solicitar una demo de {{ project.title }}"
+                  >
+                    Solicitar demo
+                  </a>
+                }
+              </div>
+            </div>
+          </article>
+        }
+      }
+    </div>
+
+    <div class="projects-toolbar">
+      <div class="project-selector" role="group" aria-label="Elegir proyecto">
+        @for (project of projects; track project.id; let index = $index) {
+          <button
+            type="button"
+            class="project-tab"
+            [class.is-active]="index === activeIndex()"
+            [attr.aria-current]="index === activeIndex() ? 'true' : null"
+            [attr.aria-label]="'Ver proyecto ' + (index + 1) + ': ' + project.title"
+            (click)="goTo(index)"
+          >
+            <span class="project-tab-index">{{ formatNumber(index + 1) }}</span>
+            <span class="project-tab-title">{{ shortTitle(project) }}</span>
+          </button>
+        }
+      </div>
+
+      <div class="project-controls">
+        <button
+          type="button"
+          class="project-control project-control--autoplay"
+          [attr.aria-label]="autoplayLabel()"
+          [title]="autoplayLabel()"
+          (click)="toggleAutoplay()"
+        >
+          @if (autoplayPaused()) {
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 5v14l11-7z"></path>
+            </svg>
+          } @else {
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M7 5h4v14H7zM13 5h4v14h-4z"></path>
+            </svg>
+          }
+        </button>
+
+        <p class="project-counter" aria-hidden="true">
+          <span>{{ formatNumber(activeIndex() + 1) }}</span>
+          <span aria-hidden="true">/</span>
+          {{ formatNumber(total) }}
+        </p>
+
+        <button
+          type="button"
+          class="project-control"
+          aria-label="Ver proyecto anterior"
+          (click)="previousProject()"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="project-control"
+          aria-label="Ver proyecto siguiente"
+          (click)="nextProject()"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
